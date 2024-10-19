@@ -9,3 +9,5 @@ type User struct {
 	Email    string `bson:"email"`
 	Admin    bool   `bson:"admin"`
 }
+
+type Users []User

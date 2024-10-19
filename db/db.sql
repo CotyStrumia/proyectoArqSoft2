@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS `courses` (
     `fecha_inicio` DATE NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE IF NOT EXISTS `users_x_courses` (
-    `users_x_courses_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `inscripciones` (
+    `inscripciones_id` int(11) NOT NULL,
     `user_id` int(11) NOT NULL,
     `course_id` int(11) NOT NULL,
     `fecha_inscripcion` DATE NOT NULL
@@ -61,9 +61,12 @@ ALTER TABLE `courses`
     ADD UNIQUE KEY `nombre` (`nombre`);
 -- ADD KEY `profesor_id` (`user_id`);
 
-ALTER TABLE `users_x_courses`
-    ADD PRIMARY KEY (`users_x_courses_id`),
-    ADD UNIQUE KEY `users_x_courses_id2` (`user_id`, `course_id`);
+ALTER TABLE `inscripciones`
+    PRIMARY KEY (`inscripciones_id`),
+    UNIQUE KEY `users_x_courses_id` (`user_id`, `course_id`),
+    CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `fk_course_id` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE
+    }
 
 ALTER TABLE `archivos`{
     ADD PRIMARY KEY (`archivo_id`),

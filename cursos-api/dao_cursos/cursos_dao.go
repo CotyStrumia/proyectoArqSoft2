@@ -14,3 +14,5 @@ type Curso struct {
 	Url_image    string    `bson:"url_image"`
 	Fecha_inicio time.Time `bson:"fecha_inicio"`
 }
+
+type Cursos []Curso
